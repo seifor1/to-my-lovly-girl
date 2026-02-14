@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine 💘</title>
+  <style>
+    :root{
+      --pink:#ff4d8d;
+      --pink2:#ff7bb3;
+      --rose:#ff2e63;
+      --bg1:#fff0f6;
+      --bg2:#ffe8f1;
+      --card:#ffffffcc;
+      --text:#2a1b22;
+      --shadow: 0 20px 60px rgba(255, 77, 141, .25);
+    }
+
+    *{ box-sizing:border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, #ffd1e3 0%, transparent 40%),
+        radial-gradient(circle at 80% 30%, #ffd6ef 0%, transparent 45%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    .wrap{ width:min(920px, 92vw); padding: 22px; }
+    .card{
+      position:relative;
+      padding: 34px 22px;
+      border-radius: 26px;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.7);
+      overflow:hidden;
+    }
+
+    .hearts{
+      position:absolute;
+      inset:-80px -60px auto -60px;
+      height:220px;
+      pointer-events:none;
+      opacity:.35;
+      background:
+        radial-gradient(circle at 15% 40%, rgba(255,77,141,.55) 0 18px, transparent 19px),
+        radial-gradient(circle at 22% 45%, rgba(255,77,141,.55) 0 18px, transparent 19px),
+        radial-gradient(circle at 18.5% 55%, rgba(255,77,141,.55) 0 22px, transparent 23px),
+        radial-gradient(circle at 55% 30%, rgba(255,46,99,.45) 0 16px, transparent 17px),
+        radial-gradient(circle at 62% 35%, rgba(255,46,99,.45) 0 16px, transparent 17px),
+        radial-gradient(circle at 58.5% 45%, rgba(255,46,99,.45) 0 20px, transparent 21px);
+      filter: blur(.2px);
+      transform: rotate(-6deg);
+    }
+
+    h1{
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -0.02em;
+    }
+    p{
+      margin: 8px 0 0;
+      font-size: clamp(15px, 1.5vw, 18px);
+      opacity:.9;
+      line-height:1.55;
+    }
+
+    .row{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+
+    button{
+      border:0;
+      cursor:pointer;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      min-width: 140px;
+    }
+    button:active{ transform: scale(.98); }
+
+    .yes{
+      background: linear-gradient(135deg, var(--rose), var(--pink2));
+      color:white;
+      box-shadow: 0 12px 26px rgba(255, 46, 99, .25);
+    }
+    .no{
+      background: white;
+      color: var(--rose);
+      border: 2px solid rgba(255,46,99,.35);
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    }
+    .no:hover{ filter: brightness(.99); }
+
+    .smallhint{
+      margin-top: 14px;
+      text-align:center;
+      font-size: 13px;
+      opacity:.7;
+    }
+
+    /* Page 2 */
+    .messageBox{
+      margin-top: 18px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(255, 46, 99, .18);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.05);
+    }
+
+    textarea{
+      width:100%;
+      resize: vertical;
+      min-height: 120px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      padding: 12px;
+      font-size: 15px;
+      outline:none;
+    }
+    textarea:focus{ border-color: rgba(255,46,99,.45); }
+
+    .songRow{
+      margin-top: 14px;
+      display:grid;
+      gap:10px;
+    }
+    input{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      padding: 12px;
+      font-size: 15px;
+      outline:none;
+    }
+    input:focus{ border-color: rgba(255,46,99,.45); }
+
+    .embed{
+      margin-top: 12px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 16px;
+      overflow:hidden;
+      box-shadow: 0 12px 26px rgba(255, 77, 141, .18);
+      background: #fff;
+    }
+
+    .topTag{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 77, 141, .12);
+      border: 1px solid rgba(255, 77, 141, .18);
+      font-weight: 650;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .hidden{ display:none; }
+    .center{ text-align:center; }
+
+    .footerRow{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .ghost{
+      background: transparent;
+      border: 1px solid rgba(0,0,0,.12);
+      color: var(--text);
+      box-shadow:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- PAGE 1 -->
+    <section class="card" id="page1">
+      <div class="hearts"></div>
+      <div class="center">
+        <div class="topTag">💌 Valentine Link</div>
+        <h1 id="question">Will you be my Valentine? 💖</h1>
+        <p>Answer carefully… my heart is watching 👀</p>
+
+        <div class="row">
+          <button class="yes" id="yesBtn">Yes 💘</button>
+          <button class="no" id="noBtn">No 🙈</button>
+        </div>
+
+        <div class="smallhint">Tip: You can edit the message + song on page 2.</div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="card hidden" id="page2">
+      <div class="hearts"></div>
+      <div class="center">
+        <div class="topTag">💞 She said yes!</div>
+        <h1>Yayyyy!! 🥹💗</h1>
+        <p>Write your message + paste a YouTube link below.</p>
+      </div>
+
+      <div class="messageBox">
+        <label for="msg" style="font-weight:700;">Your message</label>
+        <textarea id="msg" placeholder="Type your message to her here...">Happy Valentine’s Day ❤️
+I’m so lucky to have you. Thank you for being you. 💖</textarea>
+
+        <div class="songRow">
+          <label for="yt" style="font-weight:700;">YouTube song link (optional)</label>
+          <input id="yt" placeholder="Paste a YouTube link here (example: https://youtu.be/VIDEOID)" />
+          <button class="yes" id="applySong">Apply song 🎶</button>
+          <iframe class="embed hidden" id="player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="footerRow">
+        <button class="ghost" id="backBtn">⬅ Back</button>
+        <button class="yes" id="lockBtn">Make it ready to send 🔒</button>
+      </div>
+
+      <p class="smallhint center" id="lockHint">
+        When you tap “Make it ready to send”, it will save your message + song in the link.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    // --- Page 1 logic (No button text changes) ---
+    const noPhrases = [
+      "No 🙈",
+      "Are you sure? 😳",
+      "Please baby 🥺",
+      "Come onnn 😭",
+      "Don’t break my heart 💔",
+      "Last chance 😤",
+      "Okay… pretty please 💖",
+      "Say yes 😘"
+    ];
+    let noIndex = 0;
+
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("click", () => {
+      noIndex = Math.min(noIndex + 1, noPhrases.length - 1);
+      noBtn.textContent = noPhrases[noIndex];
+
+      // Optional: make "Yes" slightly bigger each time 😈
+      const scale = 1 + (noIndex * 0.06);
+      yesBtn.style.transform = `scale(${scale})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      page1.classList.add("hidden");
+      page2.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // --- Page 2: YouTube embed + saving into URL ---
+    const ytInput = document.getElementById("yt");
+    const applySongBtn = document.getElementById("applySong");
+    const player = document.getElementById("player");
+    const msg = document.getElementById("msg");
+    const backBtn = document.getElementById("backBtn");
+    const lockBtn = document.getElementById("lockBtn");
+    const lockHint = document.getElementById("lockHint");
+
+    function extractYouTubeId(url){
+      if(!url) return "";
+      try{
+        const u = new URL(url.trim());
+        // youtu.be/VIDEOID
+        if(u.hostname.includes("youtu.be")){
+          return u.pathname.replace("/", "");
+        }
+        // youtube.com/watch?v=VIDEOID
+        const v = u.searchParams.get("v");
+        if(v) return v;
+        // youtube.com/shorts/VIDEOID
+        const parts = u.pathname.split("/");
+        const shortsIndex = parts.indexOf("shorts");
+        if(shortsIndex !== -1 && parts[shortsIndex+1]) return parts[shortsIndex+1];
+      }catch(e){
+        // not a valid URL
+      }
+      return "";
+    }
+
+    function setEmbedFromLink(){
+      const id = extractYouTubeId(ytInput.value);
+      if(!id){
+        player.classList.add("hidden");
+        player.src = "";
+        return;
+      }
+      player.src = `https://www.youtube.com/embed/${id}`;
+      player.classList.remove("hidden");
+    }
+
+    applySongBtn.addEventListener("click", setEmbedFromLink);
+
+    backBtn.addEventListener("click", () => {
+      page2.classList.add("hidden");
+      page1.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Save message + youtube link into URL so you can send ONE link
+    lockBtn.addEventListener("click", () => {
+      const params = new URLSearchParams(window.location.search);
+      params.set("m", encodeURIComponent(msg.value));
+      params.set("yt", encodeURIComponent(ytInput.value.trim()));
+      params.set("ready", "1");
+
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState({}, "", newUrl);
+
+      lockHint.textContent = "Saved ✅ Now just copy the page link from your browser and send it to her.";
+    });
+
+    // Load from URL if present
+    (function initFromURL(){
+      const params = new URLSearchParams(window.location.search);
+      const ready = params.get("ready") === "1";
+      const m = params.get("m");
+      const yt = params.get("yt");
+
+      if(m) msg.value = decodeURIComponent(m);
+      if(yt) ytInput.value = decodeURIComponent(yt);
+
+      if(ready){
+        // If you already saved it, still allow edits, but show song automatically
+        setEmbedFromLink();
+      }
+    })();
+  </script>
+</body>
+</html>
